@@ -8,3 +8,5 @@ venv
 
 # User-specific Idea / Pycharm files
 .idea/
+
+data/*.csv
