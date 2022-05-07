@@ -10,3 +10,10 @@ venv
 .idea/
 
 data/*.csv
+
+graphs/*.bin
+
+input.txt
+output.txt
+annoy_index_file
+tmp.txt
