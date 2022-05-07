@@ -24,8 +24,8 @@ def read_txt(filename):
 
 
 def embed(dataset, labels, name):
-    # save_txt(dataset, 'input.txt')
-    # os.system('./LargeVis/Linux/LargeVis -input input.txt -output output.txt')
+    save_txt(dataset, 'input.txt')
+    os.system('./LargeVis/Linux/LargeVis -input input.txt -output output.txt')
     output = read_txt('output.txt').to_numpy()
     utils.save_plot_2d_scatter(output, labels, f"{name}_largevis.png")
 
