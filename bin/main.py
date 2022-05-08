@@ -4,6 +4,8 @@ from data_embedding import tsne, umap, largevis
 from metrics.local_score import LocalMetric
 from metrics.time_score import TimeScore
 from metrics.clustering_score import ClusterScore
+from metrics.spearman_score import SpearmanScore
+
 
 
 methods = [tsne, umap, largevis]
@@ -24,6 +26,7 @@ if __name__ == '__main__':
         local_metric = LocalMetric()
         time_metric = TimeScore(dataset_name)
         cluster_metric = ClusterScore(dataset_name)
+        spearman_metric = SpearmanScore(dataset_name)
 
         for method, method_name in zip(methods, method_names):
             print(f"{method_name} embedding...")
@@ -39,8 +42,10 @@ if __name__ == '__main__':
                 method_name=method_name
             )
             cluster_metric.calculate_cluster_score(output, labels, method_name)
+            spearman_metric.calculate_score(values, output, method_name)
 
         # Metrics comparison
         local_metric.visualize()
         time_metric.visualize()
         cluster_metric.visualize()
+        spearman_metric.visualize()
