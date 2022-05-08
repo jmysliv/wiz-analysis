@@ -26,10 +26,25 @@ pip freeze > requirements.txt
 Datasets are too large to put them in the repository. However you can easily download them from this Google Drive: https://drive.google.com/drive/folders/1Gw6cbUBQeR87U47a3NgzBUpsGNDlmZlJ?usp=sharing
 
 Then remember to place them inside `data` directory.
+
+## Largevis
+
+```bash
+# Install required library
+brew install gsl
+```
+
+## IVHD
+
+```bash
+# TO DO
+```
+
 ## Repo structure
 
  - `bin/main.py`: Code entry point
  - `conf/conf.py`: Configuration file for project
  - `data`: Directory for datasets
+ - `graphs`: Directory for graphs required for IVHD
  - `outputs`: Directory for png files
 
