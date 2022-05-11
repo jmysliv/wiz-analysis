@@ -45,7 +45,15 @@ g++ LargeVis.cpp main.cpp -o LargeVis -lm -pthread -lgsl -lgslcblas -Ofast [-mar
 ## IVHD
 
 ```bash
-# TO DO
+cd viskit
+git submodule init
+git submodule update
+# required tools for viskit cmake
+brew install libomp
+brew install boost
+# build
+cmake ./CMakeLists.txt
+make
 ```
 
 ## Repo structure
