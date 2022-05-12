@@ -1,5 +1,5 @@
 import utils
-from data_preprocessing import mnist
+from data_preprocessing import mnist, tng
 from data_embedding import tsne, umap, largevis
 from metrics.local_score import LocalMetric
 from metrics.time_score import TimeScore
@@ -10,8 +10,8 @@ from metrics.spearman_score import SpearmanScore
 
 methods = [tsne, umap, largevis]
 method_names = ["TSNE", "UMAP", "LARGEVIS"]
-datasets = [mnist]
-dataset_names = ["MNIST"]
+datasets = [tng, mnist]
+dataset_names = ["20NG", "MNIST"]
 
 
 if __name__ == '__main__':
