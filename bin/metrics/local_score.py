@@ -306,7 +306,7 @@ class LocalMetric:
         self.Lls.append("solid")
         self.number_of_methods = self.number_of_methods + 1
 
-    def visualize(self):
+    def visualize(self, dataset_name):
         Lmarkers = random.sample(markers, self.number_of_methods)
         Lcols = random.sample(colors, self.number_of_methods)
         Lmedw = [1.0] * self.number_of_methods
@@ -320,7 +320,7 @@ class LocalMetric:
             Lls=self.Lls,
             Lmedw=Lmedw,
             Lsdots=Lsdots,
-            tit="DR quality",
+            tit=f'{dataset_name}_dr_quality',
             xlabel="Neighborhood size $K$",
             ylabel="$R_{NX}(K)$",
         )
@@ -333,7 +333,7 @@ class LocalMetric:
             Lls=self.Lls,
             Lmedw=Lmedw,
             Lsdots=Lsdots,
-            tit="KNN gain",
+            tit=f'{dataset_name}_KNN_gain',
             xlabel="Neighborhood size $K$",
             ylabel="$G_{NN}(K)$",
         )

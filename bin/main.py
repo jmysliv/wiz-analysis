@@ -26,7 +26,7 @@ if __name__ == '__main__':
         local_metric = LocalMetric()
         time_metric = TimeScore(dataset_name)
         cluster_metric = ClusterScore(dataset_name)
-        spearman_metric = SpearmanScore(dataset_name)
+        spearman_metric = SpearmanScore(dataset_name, values)
 
         for method, method_name in zip(methods, method_names):
             print(f"{method_name} embedding...")
@@ -42,10 +42,10 @@ if __name__ == '__main__':
                 method_name=method_name
             )
             cluster_metric.calculate_cluster_score(output, labels, method_name)
-            spearman_metric.calculate_score(values, output, method_name)
+            spearman_metric.calculate_score(output, method_name)
 
         # Metrics comparison
-        local_metric.visualize()
+        local_metric.visualize(dataset_name)
         time_metric.visualize()
         cluster_metric.visualize()
         spearman_metric.visualize()
