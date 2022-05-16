@@ -43,7 +43,6 @@ def save_plot_2d_scatter(X, labels, filename):
     plot.set_xticks(())
     plot.set_yticks(())
 
-    plt.title("W")
     plt.tight_layout()
     plt.legend()
     plt.savefig(f'outputs/{filename}')
