@@ -34,7 +34,7 @@ def embed(dataset, labels, graph_name, name):
     core_path = './viskit/viskit_offline'
     save_data_as_csv(dataset, 'input_X.csv')
     save_target_as_csv(labels, 'input_Y.csv', False)
-    command = f'./viskit/viskit_offline/viskit_offline input_X.csv output_Y.csv graphs/{graph_name} output.csv'
+    command = f'.${core_path}/viskit_offline input_X.csv output_Y.csv graphs/{graph_name} output.csv'
     os.system(command)
     output = pd.read_csv(f'output.csv').iloc[:, :2].to_numpy()
     utils.save_plot_2d_scatter(output, labels, f"{name}_ivhd.png")
