@@ -30,13 +30,29 @@ def save_target_as_csv(data, filename, with_shape=True):
                 f.write('\n')
 
 
-def embed(dataset, labels, graph_name, name):
-    core_path = './viskit/viskit_offline'
-    save_data_as_csv(dataset, 'input_X.csv')
-    save_target_as_csv(labels, 'input_Y.csv', False)
-    command = f'.${core_path}/viskit_offline input_X.csv output_Y.csv graphs/{graph_name} output.csv'
-    os.system(command)
-    output = pd.read_csv(f'output.csv').iloc[:, :2].to_numpy()
-    utils.save_plot_2d_scatter(output, labels, f"{name}_ivhd.png")
+graph_names = {
+    "MNIST": "mnist_cosine.bin"
+}
 
-    return output
+arguments = {
+    "MNIST": '4000 2 1 1 0 0 0.01 force-directed'
+}
+
+input_x = 'input_X.csv'
+input_y = 'input_Y.csv'
+output = 'output.csv'
+
+
+def embed(dataset, labels, name):
+    core_path = './viskit/viskit_offline'
+    graph_name = graph_names[name]
+    argument = arguments[name]
+    save_data_as_csv(dataset, f'{core_path}/input/{input_x}')
+    save_target_as_csv(labels, f'{core_path}/input/{input_y}', False)
+    command = f'{core_path}/viskit_offline {core_path}/input/{input_x} ' \
+              f'{core_path}/input/{input_y} {core_path}/graphs/{graph_name} {core_path}/output/{output} {argument}'
+    os.system(command)
+    res = pd.read_csv(f'{core_path}/output/{output}').iloc[:, :2].to_numpy()
+    utils.save_plot_2d_scatter(res, labels, f"{name}_ivhd.png")
+
+    return res
