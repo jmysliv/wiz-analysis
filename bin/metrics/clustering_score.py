@@ -25,8 +25,12 @@ class ClusterScore():
         means = []
         for label in unique_labels:
             label_points = data[labels == label]
+
             random_idxs_size = int(label_points.shape[0]*self.coverage)
             random_idxs = np.random.randint(label_points.shape[0], size=random_idxs_size)
+            if random_idxs_size < 2:
+                means.append(0)
+                continue
             label_points = label_points[random_idxs, :]
             distances = distance_matrix(label_points, label_points)
             distances = MinMaxScaler().fit_transform(distances)

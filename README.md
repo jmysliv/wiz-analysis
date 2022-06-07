@@ -38,8 +38,8 @@ Compile and put compiled version inside `Largevis` directory.
 
 ```
 git clone https://github.com/lferry007/LargeVis.git
-cd LargeVis
-g++ LargeVis.cpp main.cpp -o LargeVis -lm -pthread -lgsl -lgslcblas -Ofast [-march=native | -mcpu=apple-m1] -ffast-math -L<PATH TO GSL LIB> -I<PATH TO GSL INCLUDE>
+cd LargeVis/Linux
+g++ LargeVis.cpp main.cpp -o LargeVis -lm -pthread -lgsl -lgslcblas -Ofast -ffast-math
 ```
 
 ## IVHD

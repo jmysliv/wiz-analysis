@@ -1,17 +1,16 @@
 import utils
-from data_preprocessing import mnist, tng
-from data_embedding import tsne, umap, largevis
+from data_preprocessing import mnist, tng, reuters
+from data_embedding import tsne, umap, largevis, ivhd
 from metrics.local_score import LocalMetric
 from metrics.time_score import TimeScore
 from metrics.clustering_score import ClusterScore
-from metrics.spearman_score import SpearmanScore
+# from metrics.spearman_score import SpearmanScore
 
 
-
-methods = [tsne, umap, largevis]
-method_names = ["TSNE", "UMAP", "LARGEVIS"]
-datasets = [tng, mnist]
-dataset_names = ["20NG", "MNIST"]
+methods = [ivhd, tsne, umap, largevis]
+method_names = ["IVHD", "TSNE", "UMAP", "LARGEVIS"]
+datasets = [mnist]
+dataset_names = ["MNIST"]
 
 
 if __name__ == '__main__':
@@ -26,7 +25,7 @@ if __name__ == '__main__':
         local_metric = LocalMetric()
         time_metric = TimeScore(dataset_name)
         cluster_metric = ClusterScore(dataset_name)
-        spearman_metric = SpearmanScore(dataset_name, values)
+        # spearman_metric = SpearmanScore(dataset_name, values) # removing because it's taking forever to calculate
 
         for method, method_name in zip(methods, method_names):
             print(f"{method_name} embedding...")
@@ -42,10 +41,10 @@ if __name__ == '__main__':
                 method_name=method_name
             )
             cluster_metric.calculate_cluster_score(output, labels, method_name)
-            spearman_metric.calculate_score(output, method_name)
+            # spearman_metric.calculate_score(output, method_name)
 
         # Metrics comparison
         local_metric.visualize(dataset_name)
         time_metric.visualize()
         cluster_metric.visualize()
-        spearman_metric.visualize()
+        # spearman_metric.visualize()
