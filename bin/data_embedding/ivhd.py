@@ -35,7 +35,7 @@ graph_names = {
 }
 
 arguments = {
-    "MNIST": '4000 2 1 1 0 0 0.01 force-directed'
+    "MNIST": '4500 2 1 1 0 0 0 force-directed'
 }
 
 input_x = 'input_X.csv'
@@ -53,6 +53,7 @@ def embed(dataset, labels, name):
               f'{core_path}/input/{input_y} {core_path}/graphs/{graph_name} {core_path}/output/{output} {argument}'
     os.system(command)
     res = pd.read_csv(f'{core_path}/output/{output}').iloc[:, :2].to_numpy()
-    utils.save_plot_2d_scatter(res, labels, f"{name}_ivhd.png")
+    new_labels = pd.read_csv(f'{core_path}/output/{output}').iloc[:, 2].to_numpy()
+    utils.save_plot_2d_scatter(res, new_labels, f"{name}_ivhd.png")
 
-    return res
+    return res, new_labels

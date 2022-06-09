@@ -30,17 +30,17 @@ if __name__ == '__main__':
         for method, method_name in zip(methods, method_names):
             print(f"{method_name} embedding...")
             time_metric.start_measurement()
-            output = method.embed(values, labels, dataset_name)
+            output, new_labels = method.embed(values, labels, dataset_name)
 
             # add results to metrics
             time_metric.stop_measurement(method_name)
             local_metric.calculate_knn_gain_and_dr_quality(
                 X_lds=output,
                 X_hds=values,
-                labels=labels,
+                labels=new_labels,
                 method_name=method_name
             )
-            cluster_metric.calculate_cluster_score(output, labels, method_name)
+            cluster_metric.calculate_cluster_score(output, new_labels, method_name)
             # spearman_metric.calculate_score(output, method_name)
 
         # Metrics comparison
