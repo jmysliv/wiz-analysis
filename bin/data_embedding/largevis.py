@@ -29,4 +29,4 @@ def embed(dataset, labels, name):
     output = read_txt('output.txt').to_numpy()
     utils.save_plot_2d_scatter(output, labels, f"{name}_largevis.png")
 
-    return output
+    return output, labels
