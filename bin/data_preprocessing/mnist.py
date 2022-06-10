@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-
-def get_data(size):
+MNIST_SIZE = 70000
+def get_data(size = MNIST_SIZE):
     mnist = pd.read_csv('data/mnist.csv', names=([i for i in range(784)] + ['labels']))
     mnist_labels = np.array(mnist['labels'])
     mnist.pop('labels')

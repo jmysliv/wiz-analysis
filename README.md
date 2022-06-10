@@ -39,7 +39,7 @@ Compile and put compiled version inside `Largevis` directory.
 ```
 git clone https://github.com/lferry007/LargeVis.git
 cd LargeVis/Linux
-g++ LargeVis.cpp main.cpp -o LargeVis -lm -pthread -lgsl -lgslcblas -Ofast -ffast-math
+g++ LargeVis.cpp main.cpp -o LargeVis -lm -pthread -lgsl -lgslcblas -Ofast -ffast-math [-march=native | -mcpu=apple-m1] -ffast-math -L<PATH TO GSL LIB> -I<PATH TO GSL INCLUDE>
 ```
 
 ## IVHD
@@ -51,6 +51,8 @@ git submodule update
 # required tools for viskit cmake
 brew install libomp
 brew install boost
+brew install pybind11
+brew install glm
 # build
 cmake ./CMakeLists.txt
 make
