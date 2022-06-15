@@ -31,11 +31,15 @@ def save_target_as_csv(data, filename, with_shape=True):
 
 
 graph_names = {
-    "MNIST": "mnist_cosine.bin"
+    "MNIST": "mnist_cosine.bin",
+    "20NG": '20ng_reduced_cosine.bin',
+    "REUTERS": "reuters_reduced_cosine.bin"
 }
 
 arguments = {
-    "MNIST": '4500 2 1 1 0 0 0 force-directed'
+    "MNIST": '4500 2 1 1 0 0 0 force-directed',
+    "20NG": '6000 3 1 1 0 0 0 force-directed',
+    "REUTERS": '6000 3 1 1 0 0 0 force-directed'
 }
 
 input_x = 'input_X.csv'

@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 
-TNG_SIZE = 18846
+TNG_SIZE = 9000
+
 
 def get_data(size = TNG_SIZE):
     tng = pd.read_csv('data/tng.csv', names=([i for i in range(5000)] + ['labels']))
