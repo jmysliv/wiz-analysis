@@ -4,11 +4,15 @@ from metrics.local_score import LocalMetric
 from metrics.time_score import TimeScore
 from metrics.clustering_score import ClusterScore
 
-
 methods = [ivhd, tsne, umap, largevis]
 method_names = ["IVHD", "TSNE", "UMAP", "LARGEVIS"]
-datasets = [mnist, tng, reuters]
-dataset_names = ["MNIST", "20NG", "REUTERS"]
+datasets = [mnist, reuters, tng]
+dataset_names = ["MNIST", "REUTERS", "20NG"]
+
+
+def get_half_dataset(dataset):
+    n = dataset.shape[0]
+    return dataset[:n//2]
 
 
 if __name__ == '__main__':
@@ -29,13 +33,17 @@ if __name__ == '__main__':
 
             # add results to metrics
             time_metric.stop_measurement(method_name)
+
+            embedded = get_half_dataset(output)
+            original = get_half_dataset(values)
+            y = get_half_dataset(new_labels)
             local_metric.calculate_knn_gain_and_dr_quality(
-                X_lds=output,
-                X_hds=values,
-                labels=new_labels,
+                X_lds=embedded,
+                X_hds=original,
+                labels=y,
                 method_name=method_name
             )
-            cluster_metric.calculate_cluster_score(output, new_labels, method_name)
+            cluster_metric.calculate_cluster_score(embedded, y, method_name)
 
         # Metrics comparison
         local_metric.visualize(dataset_name)
